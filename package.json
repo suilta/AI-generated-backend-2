@@ -1,0 +1,11 @@
+{
+  "name": "ai-generated-backend",
+  "version": "0.1.0",
+  "description": "實驗：由 AI 以一個個 JS 函數撰寫後端，附帶步進調試與資料表影響分析",
+  "private": true,
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "engines": { "node": ">=20" }
+}

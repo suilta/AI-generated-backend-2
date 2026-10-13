@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 後端實驗</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="left">
+    <div class="panel-head"><b>業務函數</b><button id="newFn" title="新建函數">＋</button></div>
+    <div id="fnList"></div>
+    <div class="panel-head sub"><b>資料表</b></div>
+    <div id="tableList"></div>
+    <div class="left-foot"><button id="resetDb">重置資料庫</button></div>
+  </aside>
+
+  <main id="center">
+    <div class="center-head">
+      <div><b id="fnName">—</b><span id="fnDesc" class="muted"></span></div>
+      <div class="row">
+        <span id="dirty" class="muted"></span>
+        <button id="saveBtn">儲存 (Ctrl+S)</button>
+      </div>
+    </div>
+    <div class="editor">
+      <div class="gutter"><div id="gutterInner"></div></div>
+      <div class="codewrap"><div id="hl" class="hl"></div><textarea id="code" spellcheck="false" wrap="off"></textarea></div>
+    </div>
+    <div class="runbar">
+      <div id="params" class="params"></div>
+      <div class="row">
+        <button id="runBtn" class="primary">▶ 試運行（不落庫）</button>
+        <button id="commitBtn">運行並提交</button>
+      </div>
+    </div>
+    <div class="stepbar" id="stepbar" hidden>
+      <button id="sFirst">⏮</button><button id="sPrev">◀</button><button id="sNext">▶</button><button id="sLast">⏭</button>
+      <input type="range" id="slider" min="0" max="0" value="0">
+      <span id="stepInfo" class="muted"></span>
+    </div>
+    <div class="tabs" id="tabs">
+      <button data-tab="state" class="active">表狀態</button>
+      <button data-tab="steps">步驟</button>
+      <button data-tab="changes">本次改動</button>
+      <button data-tab="deps">依賴關係</button>
+      <button data-tab="out">結果 / 日誌</button>
+    </div>
+    <div id="tabBody"></div>
+  </main>
+
+  <aside id="right">
+    <div class="panel-head"><b>AI Agent</b><span id="chatFile" class="muted"></span></div>
+    <div id="chatLog"></div>
+    <div class="chat-input">
+      <textarea id="chatText" rows="3" placeholder="描述業務規則，或貼上報錯讓 AI 修正…（Ctrl+Enter 發送）"></textarea>
+      <div class="row"><label class="muted"><input type="checkbox" id="sendRun" checked> 附帶最近一次運行結果</label><button id="chatSend" class="primary">發送</button></div>
+    </div>
+  </aside>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
